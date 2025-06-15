@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InLibras - Orçamentos</title>
+    <link rel="stylesheet" href="../css/orcamentos-style.css">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/header.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="../assets/logo.png" alt="InLibras Logo" class="logo">
+        </nav>
+    </header>
+
+    <div class="navigation-container">
+        <div class="nav-buttons">
+            <div class="nav-buttons-main">
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="calculator-section">
+            <h1>Meus Orçamentos Salvos</h1>
+            
+            <div class="budgets-list" id="budgetsList">
+                <!-- Budgets will be loaded here dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 InLibras - Todos os direitos reservados</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { db, auth, analytics } from '../js/firebase-config.js';
+
+        // Make Firebase services available globally
+        window.db = db;
+        window.auth = auth;
+        window.analytics = analytics;
+    </script>
+    
+    <!-- Custom Scripts -->
+    <script src="../scripts/orcamentos-script.js"></script>
+    <script src="../js/login-script.js" type="module"></script>
+</body>
+</html> 

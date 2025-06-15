@@ -1,7 +1,6 @@
 {
   "hosting": {
-    "site": "inlibras1",
-    "public": "public",
+    "public": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -12,6 +11,11 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ]
+    ],
+    "channels": {
+      "staging": {
+        "public": "."
+      }
+    }
   }
 } 
