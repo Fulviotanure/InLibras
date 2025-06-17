@@ -1,35 +1,25 @@
-// Firebase configuration
-const firebaseConfig = {
-    // Your Firebase configuration will go here
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const auth = firebase.auth();
-
 // DOM Elements
 const budgetsList = document.getElementById('budgetsList');
 
 // Initialize the page
 function init() {
     // Check authentication state
-    auth.onAuthStateChanged(user => {
+    window.auth.onAuthStateChanged(user => {
         if (!user) {
-            window.location.href = '../login/index.html';
+            window.location.href = '../pages/login.html';
         } else {
-            loadBudgets();
+            loadBudgets(user.uid);
         }
     });
 }
 
 // Load budgets from Firebase
-async function loadBudgets() {
+async function loadBudgets(userId) {
     try {
         budgetsList.innerHTML = '<div class="loading">Carregando orçamentos...</div>';
 
-        const snapshot = await db.collection('budgets')
-            .where('userId', '==', auth.currentUser.uid)
+        const snapshot = await window.db.collection('budgets')
+            .where('userId', '==', userId)
             .orderBy('createdAt', 'desc')
             .get();
 
@@ -37,7 +27,7 @@ async function loadBudgets() {
             budgetsList.innerHTML = `
                 <div class="empty-state">
                     <p>Você ainda não salvou nenhum orçamento.</p>
-                    <button class="action-btn view-btn" onclick="window.location.href='../home/index.html'">
+                    <button class="action-btn view-btn" onclick="window.location.href='../index.html'">
                         Criar Novo Orçamento
                     </button>
                 </div>
@@ -81,7 +71,7 @@ async function loadBudgets() {
 
 // View budget details
 function viewBudget(budgetId) {
-    window.location.href = `../visualizar-orcamento/index.html?id=${budgetId}`;
+    window.location.href = `../pages/visualizar-orcamento.html?id=${budgetId}`;
 }
 
 // Delete budget
@@ -91,7 +81,7 @@ async function deleteBudget(budgetId) {
     }
 
     try {
-        await db.collection('budgets').doc(budgetId).delete();
+        await window.db.collection('budgets').doc(budgetId).delete();
         // Remove the budget card from the UI without reloading
         const budgetCard = document.querySelector(`[onclick*="${budgetId}"]`).closest('.budget-card');
         if (budgetCard) {
@@ -101,7 +91,7 @@ async function deleteBudget(budgetId) {
                 budgetsList.innerHTML = `
                     <div class="empty-state">
                         <p>Você ainda não salvou nenhum orçamento.</p>
-                        <button class="action-btn view-btn" onclick="window.location.href='../home/index.html'">
+                        <button class="action-btn view-btn" onclick="window.location.href='../index.html'">
                             Criar Novo Orçamento
                         </button>
                     </div>

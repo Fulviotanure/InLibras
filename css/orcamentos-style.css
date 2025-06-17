@@ -42,7 +42,6 @@ body {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(-70deg, var(--dark-background-start), var(--dark-background-end));
     font-family: 'Roboto', sans-serif;
     color: var(--text-primary);
     margin: 0;
@@ -839,7 +838,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #5d326c, #350048);
+    /* background: linear-gradient(to bottom, #5d326c, #350048); Removido para usar background.css */
 }
 .container {
     width: 800px;

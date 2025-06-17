@@ -41,10 +41,6 @@ body {
     color: var(--text-primary);
     margin: 0;
     padding-top: 0; /* Remove padding top as elements will no longer be fixed */
-    background: linear-gradient(-70deg, var(--dark-background-start), var(--dark-background-end)); /* Gradiente de fundo */
-    background-size: cover; /* Ajusta o tamanho do background */
-    background-position: center center;
-    background-attachment: fixed; /* Mantém o background fixo durante a rolagem */
     line-height: 1.6;
     overflow-x: hidden; /* Previne rolagem horizontal indesejada */
 }
@@ -53,13 +49,13 @@ body {
 main {
     max-width: 1400px;
     margin: 0.75rem auto;
-    padding: 0 1rem;
+    padding: 0 2.5rem;
     background: none;
 }
 
 /* Estilos gerais para seções principais (calculadora, input, resumo, tabela) */
 .calculator-section {
-    background: rgba(var(--glass-base-rgb), var(--glass-alpha-medium)); /* Fundo glassmorphism */
+    background: rgba(var(--glass-base-rgb), 0.05); /* Fundo glassmorphism mais transparente */
     backdrop-filter: blur(35px);
     -webkit-backdrop-filter: blur(35px);
     border: 2px solid rgba(var(--glass-base-rgb), var(--border-alpha-light));
@@ -73,7 +69,7 @@ main {
 
 /* Estilos de fundo para todas as seções principais */
 .calculator-section, .input-section, .summary-section, table {
-    background: rgba(var(--glass-base-rgb), var(--glass-alpha-medium)); /* Fundo glassmorphism geral */
+    background: rgba(var(--glass-base-rgb), 0.05); /* Fundo glassmorphism geral mais transparente */
     backdrop-filter: blur(35px); /* Efeito de desfoque */
     -webkit-backdrop-filter: blur(35px);
     border: 2px solid rgba(var(--glass-base-rgb), var(--border-alpha-light)); /* Borda sutil */
@@ -873,7 +869,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #5d326c, #350048);
+    /* background: linear-gradient(to bottom, #5d326c, #350048); */
 }
 .container {
     width: 800px;
@@ -1602,4 +1598,19 @@ input:-ms-input-placeholder {
 input::-ms-input-placeholder {
     color: white !important;
     opacity: 1;
+}
+
+footer {
+    max-width: 1400px; /* Alinha com o restante do conteúdo */
+    margin: 2rem auto 1rem auto; /* Centraliza e adiciona margem superior e inferior */
+    padding: 1rem 2.5rem; /* Ajusta o padding horizontal para alinhar o texto */
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    background: rgba(var(--glass-base-rgb), 0.05); /* Fundo glassmorphism */
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    border: 2px solid rgba(var(--glass-base-rgb), var(--border-alpha-light));
+    box-shadow: 0 0 80px var(--shadow-color);
+    border-radius: 20px;
 }

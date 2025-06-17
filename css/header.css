@@ -8,12 +8,12 @@ header {
     padding: 1.5rem 1rem 1rem 1rem; /* Ajustado padding bottom para um visual mais compacto */
     width: 100%; /* Ocupa a largura total do container pai */
     max-width: 1400px; /* Largura máxima aumentada para centralizar com o restante do conteúdo */
-    z-index: auto; /* Z-index não é mais necessário para fixed */
+    z-index: 2147483647; /* Z-index para garantir que fique na frente */
     border-radius: 0 0 20px 20px; /* Bordas arredondadas na parte inferior */
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin: 0 auto 1.5rem auto; /* Centraliza e adiciona espaço de 1.5rem abaixo do header */
+    justify-content: center;
+    margin: 0 auto; /* Centraliza o header */
 }
 
 /* Alinhamento de elementos dentro do cabeçalho */
@@ -25,17 +25,16 @@ header > nav, header > .sub-header-nav {
 
 /* Estilos da navegação principal */
 nav {
+    width: 100%;
+    max-width: 1400px; /* Alinhar com o navigation-container */
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background: none;
-    padding-bottom: 0.5rem;
 }
 
 /* Estilos do logo */
 .logo {
-    height: 100px; /* Ajusta tamanho do logo em telas menores */
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)); /* Sombra para o logo */
+    height: 50px;
 }
 
 /* Estilos da sub-navegação (originalmente dentro do cabeçalho) */
@@ -55,27 +54,28 @@ nav {
     box-shadow: 0 0 80px var(--shadow-color);
     padding: 0.8rem 1rem;
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto 0.75rem auto;
-    z-index: auto;
+    max-width: 1400px; /* Garante alinhamento consistente */
+    margin: 1rem auto; /* Ajusta a margem superior para reduzir espaço e alinhar com a borda do header */
+    position: relative;
+    z-index: 2147483647;
     border-radius: 20px;
 }
 
 /* Container dos botões de navegação */
 .nav-buttons {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    padding: 0;
-    margin: 0;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1; /* z-index dentro do seu contexto de empilhamento pai */
 }
 
 /* Container dos botões de navegação principais (Home e Orçamentos) */
 .nav-buttons-main {
     display: flex;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
+    gap: 20px;
 }
 
 /* Container do botão Adicionar Dia */
@@ -129,7 +129,24 @@ nav {
 }
 
 /* Botões de Navegação (Home, Orçamentos) - Cores Específicas */
-/* This section is removed as styling is handled by .nav-btn */
+.nav-buttons.container .btn:nth-child(1)::before,
+.nav-buttons.container .btn:nth-child(1)::after,
+.nav-buttons.container .btn:nth-child(2)::before,
+.nav-buttons.container .btn:nth-child(2)::after {
+    background: #2db2ff;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff,
+        0 0 60px #2db2ff;
+}
+
+.nav-buttons.container .btn:hover::before,
+.nav-buttons.container .btn:hover::after {
+    height: 60%;
+    width: 90%;
+}
+
+.nav-buttons.container {
+    width: 400px;
+}
 
 /* Botão Home */
 .home-btn {
@@ -145,6 +162,94 @@ nav {
     min-width: 110px;
 }
 
+.home-btn a {
+    top: auto;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.home-btn:hover a {
+    letter-spacing: 3px;
+}
+
+.home-btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+
+.home-btn:hover a::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+.home-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #2db2ff;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
+}
+
+.home-btn:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.home-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #2db2ff;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
+}
+
+.home-btn:hover::after {
+    top: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
 /* Botão Orçamentos */
 .budgets-btn {
     position: relative;
@@ -157,6 +262,94 @@ nav {
     justify-content: flex-start;
     align-items: center;
     min-width: 110px;
+}
+
+.budgets-btn a {
+    top: auto;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.budgets-btn:hover a {
+    letter-spacing: 3px;
+}
+
+.budgets-btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+
+.budgets-btn:hover a::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+.budgets-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #2db2ff;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
+}
+
+.budgets-btn:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.budgets-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #2db2ff;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
+}
+
+.budgets-btn:hover::after {
+    top: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
 }
 
 /* Media Queries para Responsividade */
@@ -197,10 +390,74 @@ nav {
     }
 }
 
-.login-btn, .logout-btn {
+.user-menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.user-info {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 45px;
-    width: fit-content;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.user-info:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-info span {
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.arrow-down {
+    font-size: 12px;
+    color: white;
+    opacity: 0.8;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    min-width: 150px;
+    display: none;
+    z-index: 1000;
+}
+
+.user-menu:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#logoutBtn {
+    color: #ff4d4d;
+    font-weight: 500;
+}
+
+#logoutBtn:hover {
+    background: rgba(255, 77, 77, 0.1);
 }

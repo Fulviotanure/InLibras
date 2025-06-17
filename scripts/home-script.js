@@ -1,6 +1,9 @@
 // === Funções de formatação e validação ===
 console.log("home-script.js loaded!");
 
+// Import Firebase functions
+import { collection, addDoc, serverTimestamp, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
 // Variáveis globais
 let budgetItems = [];
 let totalHours = 0;
@@ -158,6 +161,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Chamada inicial para calcular totais
     window.atualizarTotais();
+
+    // User menu functionality
+    const userNameElement = document.getElementById('userName');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // Update user name when auth state changes
+    window.auth.onAuthStateChanged((user) => {
+        if (user) {
+            // Get user's display name or email
+            const displayName = user.displayName || user.email.split('@')[0];
+            userNameElement.textContent = displayName;
+        }
+    });
+
+    // Handle logout
+    logoutBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        try {
+            await window.auth.signOut();
+            window.location.replace('pages/login.html');
+        } catch (error) {
+            console.error('Error signing out:', error);
+            alert('Erro ao fazer logout. Por favor, tente novamente.');
+        }
+    });
 });
 
 // Função para atualizar os totais
@@ -166,10 +194,23 @@ function atualizarTotais() {
     updateSummary();
 }
 
-// Make the function available globally
-window.atualizarTotais = atualizarTotais;
+// Export functions that are called from HTML
+export {
+    atualizarTotais,
+    addDayToBudget,
+    removeItem,
+    saveBudget,
+    generatePDF
+};
 
-// Function to add a new day (row) to the budget table
+// Make functions available globally for HTML onclick handlers
+window.atualizarTotais = atualizarTotais;
+window.addDayToBudget = addDayToBudget;
+window.removeItem = removeItem;
+window.saveBudget = saveBudget;
+window.generatePDF = generatePDF;
+
+// Função para adicionar um novo dia (linha) à tabela de orçamento
 function addDayToBudget(e) {
     if (e) {
         e.preventDefault();
@@ -723,110 +764,64 @@ function updateSummary() {
 
 // Function to save budget to Firebase
 async function saveBudget() {
-    console.log("saveBudget function called.");
-    console.log("Current globalGrossTotal:", globalGrossTotal);
-    console.log("Current globalDiscount:", globalDiscount);
-    console.log("Current globalFinalValue:", globalFinalValue);
-
-    // Get client name element
-    const clientNameInput = document.getElementById('clientName');
-    let clientName = '';
-
-    // Check if client name element exists and get value
-    if (clientNameInput) {
-        clientName = clientNameInput.value;
-    }
-
-    // If no client name is provided, generate a sequential budget number
-    if (!clientName) {
-        try {
-            const budgetsRef = window.db.collection('budgets');
-            const querySnapshot = await budgetsRef.where('userId', '==', window.auth.currentUser.uid).get();
-            const budgetCount = querySnapshot.size;
-            clientName = `Orçamento ${budgetCount + 1}`;
-        } catch (error) {
-            console.error('Error getting budget count:', error);
-            clientName = 'Orçamento 1';
-        }
-    }
-
-    if (globalFinalValue <= 0) {
-        alert('O valor final do orçamento deve ser maior que zero para ser salvo.');
-        return;
-    }
+    console.log('saveBudget function called.');
+    console.log('Current globalGrossTotal:', globalGrossTotal);
+    console.log('Current globalDiscount:', globalDiscount);
+    console.log('Current globalFinalValue:', globalFinalValue);
 
     try {
+        // Get the current user
         const user = window.auth.currentUser;
         if (!user) {
-            alert('Você precisa estar logado para salvar orçamentos.');
-            window.location.href = '../login/index.html'; // Redirect to login
-            return;
+            throw new Error('Usuário não autenticado');
         }
 
+        // Get the client name
+        let clientName = document.getElementById('clientName').value;
+        
+        // If no client name is provided, generate a sequential budget number
+        if (!clientName) {
+            try {
+                const budgetsRef = collection(window.db, 'budgets');
+                const q = query(budgetsRef, where('userId', '==', user.uid));
+                const querySnapshot = await getDocs(q);
+                const budgetCount = querySnapshot.size;
+                clientName = `Orçamento ${budgetCount + 1}`;
+            } catch (error) {
+                console.error('Erro ao obter contagem de orçamentos:', error);
+                // Fallback if there's an error getting count (e.g., first budget)
+                clientName = 'Orçamento 1';
+            }
+        }
+
+        // Create the budget data object
         const budgetData = {
-            userId: user.uid,
             clientName: clientName,
+            items: budgetItems,
+            totalHours: totalHours,
+            subtotal: subtotal,
+            totalAdditions: totalAdditions,
             grossTotal: globalGrossTotal,
             discount: globalDiscount,
             finalValue: globalFinalValue,
-            createdAt: window.db.FieldValue.serverTimestamp(),
-            budgetItems: [] // This will store the details from the table
+            createdAt: serverTimestamp(),
+            userId: user.uid
         };
 
-        // Collect budget items from the table
-        const tableBody = document.getElementById('budgetTableBody');
-        if (!tableBody) {
-            console.error('Tabela de orçamento não encontrada');
-            alert('Erro: Tabela de orçamento não encontrada. Por favor, recarregue a página.');
-            return;
-        }
-
-        for (let i = 0; i < tableBody.rows.length; i++) {
-            const row = tableBody.rows[i];
-            const date = row.querySelector('td:nth-child(1) input[type="date"]').value;
-            const startTime = row.querySelector('td:nth-child(2) input[type="time"]').value;
-            const endTime = row.querySelector('td:nth-child(3) input[type="time"]').value;
-            const hours = parseFloat(row.querySelector('td:nth-child(4)').textContent);
-            const numInterpreters = parseInt(row.querySelector('td:nth-child(5)').textContent);
-            const foreignLang = row.querySelector('td:nth-child(6) input[type="checkbox"]').checked;
-            const saturday = row.querySelector('td:nth-child(7) input[type="checkbox"]').checked;
-            const sundayHoliday = row.querySelector('td:nth-child(8) input[type="checkbox"]').checked;
-            const nightShift = row.querySelector('td:nth-child(9) input[type="checkbox"]').checked;
-            const baseValue = parseFloat(row.querySelector('td:nth-child(10)').textContent.replace('R$ ', '').replace('.', '').replace(',', '.'));
-            const rowTotal = parseFloat(row.querySelector('td:nth-child(11)').textContent.replace('R$ ', '').replace('.', '').replace(',', '.'));
-
-            budgetData.budgetItems.push({
-                date,
-                startTime,
-                endTime,
-                hours,
-                numInterpreters,
-                foreignLang,
-                saturday,
-                sundayHoliday,
-                nightShift,
-                baseValue,
-                rowTotal
-            });
-        }
-
-        // Add a new document with a generated ID
-        const docRef = await window.db.collection('budgets').add(budgetData);
-        alert('Orçamento salvo com sucesso! ID: ' + docRef.id);
-
-        // Optionally redirect to the budgets list page
-        window.location.href = '../pages/orcamentos.html';
-
+        // Add the budget to Firestore
+        const docRef = await addDoc(collection(window.db, "budgets"), budgetData);
+        console.log("Orçamento salvo com sucesso! ID:", docRef.id);
+        alert("Orçamento salvo com sucesso!");
+        
+        // Clear the form
+        budgetItems = [];
+        updateTable();
+        updateSummary();
+        document.getElementById('clientName').value = '';
+        
     } catch (error) {
-        console.error('FirebaseError:', error);
-        if (error.code === 'permission-denied') {
-            alert('Erro: Você não tem permissão para salvar orçamentos. Verifique suas regras de segurança do Firebase.');
-        } else if (error.message.includes('Function addDoc() called with invalid data. Unsupported field value: undefined')) {
-             alert('Erro ao salvar orçamento: Dados inválidos. Verifique os valores calculados (Total Bruto, Desconto, Valor Final).');
-             console.error('Detalhes do erro:', error);
-        } else {
-            alert('Erro ao salvar orçamento: ' + error.message);
-        }
+        console.error("Error saving budget:", error);
+        alert("Erro ao salvar orçamento: " + error.message);
     }
 }
 
