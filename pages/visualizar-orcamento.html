@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/background.css">
     <link rel="icon" type="image/png" href="../assets/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <header>
@@ -21,7 +22,7 @@
         <div class="nav-buttons">
             <div class="nav-buttons-main">
                 <div class="home-btn">
-                    <a href="../home/index.html">Home</a>
+                    <a href="../index.html">Home</a>
                 </div>
                 <div class="budgets-btn">
                     <a href="../pages/orcamentos.html">Orçamentos</a>
@@ -101,6 +102,11 @@
         </section>
     </main>
 
+    <!-- Hidden container for PDF content -->
+    <div id="pdfContentArea" style="display: none;">
+        <!-- Content for PDF will be dynamically added here -->
+    </div>
+
     <footer>
         <p>&copy; 2025 InLibras - Todos os direitos reservados</p>
     </footer>
@@ -118,6 +124,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     
     <!-- Custom Scripts -->
-    <script src="../scripts/visualizar-orcamento-script.js"></script>
+    <script type="module" src="../scripts/visualizar-orcamento-script.js"></script>
 </body>
 </html> 

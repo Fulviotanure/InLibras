@@ -34,8 +34,20 @@
         <section class="calculator-section">
             <h1>Meus Orçamentos Salvos</h1>
             
-            <div class="budgets-list" id="budgetsList">
-                <!-- Budgets will be loaded here dynamically -->
+            <div class="budgets-list">
+                <table id="budgetsTable">
+                    <thead>
+                        <tr>
+                            <th>Nome do Cliente/Evento</th>
+                            <th>Data de Criação</th>
+                            <th>Valor Final</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="budgetsTableBody">
+                        <!-- Os orçamentos serão carregados dinamicamente aqui -->
+                    </tbody>
+                </table>
             </div>
         </section>
     </main>

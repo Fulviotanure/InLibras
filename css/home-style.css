@@ -47,7 +47,7 @@ body {
 
 /* Conteúdo principal */
 main {
-    max-width: 1400px;
+    max-width: 1600px; /* Aumentei a largura máxima */
     margin: 0.75rem auto;
     padding: 0 2.5rem;
     background: none;

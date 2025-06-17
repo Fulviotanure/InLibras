@@ -169,8 +169,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update user name when auth state changes
     window.auth.onAuthStateChanged((user) => {
         if (user) {
-            // Get user's display name or email
-            const displayName = user.displayName || user.email.split('@')[0];
+            // Get user's display name, email, or uid as fallback
+            let displayName;
+            if (user.displayName) {
+                displayName = user.displayName;
+            } else if (user.email) {
+                displayName = user.email.split('@')[0];
+            } else {
+                displayName = `Usuário ${user.uid.slice(0, 4)}`;
+            }
             userNameElement.textContent = displayName;
         }
     });
@@ -251,8 +258,9 @@ function addDayToBudget(e) {
     errorMessageDiv.style.display = 'none';
     errorMessageDiv.innerHTML = '';
 
-    // Array to store validation errors
+    // Array to store validation errors and warnings
     const errors = [];
+    const warnings = [];
 
     console.log('4. Iniciando validações...');
 
@@ -299,14 +307,14 @@ function addDayToBudget(e) {
         }
     }
 
-    // Validate if end time is after start time
+    // Validate if end time is after start time (this becomes a warning)
     if (inicio && fim && isValidTimeFormat(inicio) && isValidTimeFormat(fim)) {
         console.log('4.8. Validando ordem dos horários');
         const start = new Date(`2000-01-01T${inicio}`);
         const end = new Date(`2000-01-01T${fim}`);
         if (end <= start) {
             console.log('4.8.1. Horário final é anterior ao inicial (possível serviço noturno)');
-            errors.push("⚠️ Aviso: Horário final é anterior ao horário de início (serviço noturno)");
+            warnings.push("⚠️ Aviso: Horário final é anterior ao horário de início (serviço noturno)");
         }
     }
 
@@ -354,6 +362,18 @@ function addDayToBudget(e) {
         return;
     }
 
+    // If there are warnings, display them
+    if (warnings.length > 0) {
+        console.log('6. Exibindo avisos encontrados');
+        errorMessageDiv.innerHTML = `
+            <div class="error-header">⚠️ Avisos:</div>
+            <ul class="error-list">
+                ${warnings.map(warning => `<li>${warning}</li>`).join('')}
+            </ul>
+        `;
+        errorMessageDiv.style.display = 'block';
+    }
+
     console.log('7. Criando novo item...');
 
     // Convert date from DD/MM/YYYY to YYYY-MM-DD for internal use
@@ -379,11 +399,45 @@ function addDayToBudget(e) {
         leHoraInicio: leInicio,
         leHoraFim: leFim,
         isHoliday: feriado,
-        isSaturday: new Date(formattedDate).getDay() === 6, // This is a boolean flag, not hours
+        isSaturday: new Date(formattedDate).getDay() === 6,
         saturdayHours: newSaturdayHours,
         sundayHours: newSundayHours,
         nightHours: newNightHours
     };
+
+    // Calculate derived values for newItem
+    const hours = calculateHours(newItem.startTime, newItem.endTime);
+    const baseValue = hours * newItem.hourlyRate * newItem.interpreters;
+
+    // Create a temporary item for calculateAdditions, it expects certain properties
+    const tempItemForAdditions = {
+        date: newItem.date,
+        startTime: newItem.startTime,
+        endTime: newItem.endTime,
+        interpreters: newItem.interpreters,
+        hourlyRate: newItem.hourlyRate,
+        hasForeignLanguage: newItem.hasForeignLanguage,
+        leHoraInicio: newItem.leHoraInicio,
+        leHoraFim: newItem.leHoraFim,
+        isHoliday: newItem.isHoliday,
+        saturdayHours: newItem.saturdayHours,
+        sundayHours: newItem.sundayHours,
+        nightHours: newItem.nightHours,
+    };
+
+    const additionsResult = calculateAdditions(tempItemForAdditions, baseValue);
+
+    // Add these calculated properties to newItem
+    newItem.hours = hours;
+    newItem.baseValue = baseValue;
+    newItem.additionsAmount = (additionsResult.foreignLanguageAddition + additionsResult.saturdayAddition + additionsResult.sundayHolidayAddition + additionsResult.nightAddition);
+    newItem.total = additionsResult.finalTotalWithAdditions;
+    newItem.isNight = (newItem.nightHours > 0);
+    // Adicionar os valores monetários individuais dos acréscimos
+    newItem.foreignLanguageAddition = additionsResult.foreignLanguageAddition;
+    newItem.saturdayAddition = additionsResult.saturdayAddition;
+    newItem.sundayHolidayAddition = additionsResult.sundayHolidayAddition;
+    newItem.nightAddition = additionsResult.nightAddition;
 
     console.log('8. Novo item criado:', newItem);
 
@@ -718,7 +772,7 @@ function updateSummary() {
     totalAdditions = totalAdditionsSummary;
     grossTotal = grossTotalSummary;
 
-    const discountElement = document.getElementById('discount');
+    const discountElement = document.getElementById('porcentagemDesconto');
     const discountPercentage = discountElement ? parseFloat(discountElement.value.replace(',', '.')) || 0 : 0;
     const discountAmount = grossTotal * (discountPercentage / 100);
     finalTotal = grossTotal - discountAmount;
