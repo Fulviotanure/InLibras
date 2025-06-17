@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InLibras - Visualizar Orçamento</title>
+    <link rel="stylesheet" href="../css/visualizar-orcamento-style.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/background.css">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="../assets/logo.png" alt="InLibras Logo" class="logo">
+        </nav>
+    </header>
+
+    <div class="navigation-container">
+        <div class="nav-buttons">
+            <div class="nav-buttons-main">
+                <div class="home-btn">
+                    <a href="../home/index.html">Home</a>
+                </div>
+                <div class="budgets-btn">
+                    <a href="../pages/orcamentos.html">Orçamentos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="view-budget-section">
+            <h1>Visualizar Orçamento</h1>
+            
+            <div class="client-info">
+                <h2 id="clientName">Carregando...</h2>
+                <p id="creationDate">Carregando...</p>
+            </div>
+
+            <div class="table-container">
+                <h2>Itens do Orçamento</h2>
+                <table id="budgetTable">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Início</th>
+                            <th>Fim</th>
+                            <th>Horas</th>
+                            <th>Qtd. Tils</th>
+                            <th>V.Hora (R$)</th>
+                            <th>Língua Estrangeira (50%)</th>
+                            <th>Sábado (25%)</th>
+                            <th>Domingo/Feriado (50%)</th>
+                            <th>Horário Noturno (25%)</th>
+                            <th>Total (R$)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="budgetTableBody">
+                        <!-- Linhas serão adicionadas dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="summary-section">
+                <h2>Resumo Final do Orçamento</h2>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <label>Horas Totais:</label>
+                        <span id="totalHoras">0 horas</span>
+                    </div>
+                    <div class="summary-item">
+                        <label>Valor por Hora:</label>
+                        <span id="valorHoraTotal">R$ 0,00</span>
+                    </div>
+                    <div class="summary-item">
+                        <label>Total Acréscimos:</label>
+                        <span id="totalAcrescimos">R$ 0,00</span>
+                    </div>
+                    <div class="summary-item">
+                        <label>Total Bruto:</label>
+                        <span id="totalGeral">R$ 0,00</span>
+                    </div>
+                    <div class="summary-item discount">
+                        <label>Desconto (%):</label>
+                        <span id="porcentagemDesconto">0</span>
+                    </div>
+                    <div class="summary-item total">
+                        <label>Valor Final:</label>
+                        <span id="valorFinal">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons-bottom">
+                <div class="generate-pdf-btn">
+                    <a href="#" id="generatePdfBtn">Gerar PDF</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 InLibras - Todos os direitos reservados</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { db, auth } from '../js/firebase-config.js';
+
+        // Make Firebase services available globally
+        window.db = db;
+        window.auth = auth;
+    </script>
+    
+    <!-- html2pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="../scripts/visualizar-orcamento-script.js"></script>
+</body>
+</html> 
