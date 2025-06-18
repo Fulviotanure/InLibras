@@ -775,14 +775,18 @@ function updateSummary() {
     const discountElement = document.getElementById('porcentagemDesconto');
     const discountPercentage = discountElement ? parseFloat(discountElement.value.replace(',', '.')) || 0 : 0;
     const discountAmount = grossTotal * (discountPercentage / 100);
-    finalTotal = grossTotal - discountAmount;
+    const valorComDesconto = grossTotal - discountAmount;
+    const valorNotaFiscal16 = valorComDesconto * 0.16;
+    const valorFinalComNota = valorComDesconto + valorNotaFiscal16;
 
     console.log('Final summary values before DOM update:', {
         totalHours,
         subtotal,
         totalAdditions,
         grossTotal,
-        finalTotal
+        valorComDesconto,
+        valorNotaFiscal16,
+        valorFinalComNota
     });
 
     const totalHoursElement = document.getElementById('totalHoras');
@@ -805,15 +809,20 @@ function updateSummary() {
         totalGeralElement.textContent = formatCurrency(grossTotal);
     }
 
+    const valorNotaFiscal16Element = document.getElementById('valorNotaFiscal16');
+    if (valorNotaFiscal16Element) {
+        valorNotaFiscal16Element.textContent = formatCurrency(valorNotaFiscal16);
+    }
+
     const valorFinalElement = document.getElementById('valorFinal');
     if (valorFinalElement) {
-        valorFinalElement.textContent = formatCurrency(finalTotal);
+        valorFinalElement.textContent = formatCurrency(valorFinalComNota);
     }
 
     // Update global variables
     globalGrossTotal = grossTotal;
     globalDiscount = discountPercentage;
-    globalFinalValue = finalTotal;
+    globalFinalValue = valorFinalComNota;
 }
 
 // Function to save budget to Firebase
@@ -988,7 +997,8 @@ function generatePDF() {
                     <div>
                         <p style="color: black;"><strong>Total Bruto:</strong> <span style="color: black;">${grossTotal}</span></p>
                         <p style="color: black;"><strong>Desconto:</strong> <span style="color: black;">${discount}%</span></p>
-                        <p style="color: black;"><strong>VALOR FINAL:</strong> <span style="color: black; font-weight: bold; font-size: 1.2rem;">${valorTotal}</span></p>
+                        <p style="color: black;"><strong>Nota Fiscal 16%:</strong> <span style="color: black;">${formatCurrency(valorNotaFiscal16)}</span></p>
+                        <p style="color: black;"><strong>VALOR FINAL:</strong> <span style="color: black; font-weight: bold; font-size: 1.2rem;">${formatCurrency(valorFinalComNota)}</span></p>
                     </div>
                 </div>
             </div>

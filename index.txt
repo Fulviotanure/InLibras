@@ -152,6 +152,7 @@
                 <li><strong>Total de Acréscimos:</strong> É a soma de todos os acréscimos diários aplicáveis.</li>
                 <li><strong>Total Bruto:</strong> É a soma do Valor Base com o Total de Acréscimos.</li>
                 <li><strong>Valor Final:</strong> É o Total Bruto menos o percentual de desconto aplicado.</li>
+                <li><strong>Acréscimo de 16% Nota Fiscal:</strong> Corresponde a 16% sobre o valor final da nota fiscal, referente a encargos e tributos obrigatórios.</li>
             </ul>
         </div>
     </div>

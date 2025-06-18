@@ -1,0 +1,1111 @@
+/* Estilos base para qualquer elemento com a classe "btn" */
+.btn {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    height: 45px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para a tag <a> dentro de qualquer .btn */
+.btn a {
+    top: auto;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.btn:hover a {
+    letter-spacing: 3px;
+}
+
+.btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+
+.btn:hover a::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #f00;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+}
+
+.btn:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #f00;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+}
+
+.btn:hover::after {
+    top: 0;
+    border-radius: 30px;
+}
+
+/* Botões de Navegação (Home, Orçamentos) */
+.nav-buttons.container .btn:nth-child(1)::before,
+.nav-buttons.container .btn:nth-child(1)::after,
+.nav-buttons.container .btn:nth-child(2)::before,
+.nav-buttons.container .btn:nth-child(2)::after {
+    background: #2db2ff;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff,
+        0 0 60px #2db2ff;
+}
+
+.nav-buttons.container .btn:hover::before,
+.nav-buttons.container .btn:hover::after {
+    height: 60%;
+    width: 90%;
+}
+
+.nav-buttons.container {
+    width: 400px;
+}
+
+/* Botão Home */
+.home-btn {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    height: 45px;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 110px;
+}
+
+.home-btn a {
+    top: auto;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.home-btn:hover a {
+    letter-spacing: 3px;
+}
+
+.home-btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+
+.home-btn:hover a::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+.home-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #2db2ff;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
+}
+
+.home-btn:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.home-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #2db2ff;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
+}
+
+.home-btn:hover::after {
+    top: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.home-btn button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(45, 178, 255, 0.15) !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 30px;
+    padding: 0.9rem 2.8rem;
+    min-width: 180px;
+    min-height: 48px;
+    font-size: 1.08rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.home-btn:hover button {
+    letter-spacing: 3px;
+}
+
+.home-btn button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+
+.home-btn:hover button::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+/* Botão Orçamentos */
+.budgets-btn {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    height: 45px;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 110px;
+}
+
+.budgets-btn a {
+    top: auto;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.budgets-btn:hover a {
+    letter-spacing: 3px;
+}
+
+.budgets-btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+
+.budgets-btn:hover a::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+.budgets-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #2db2ff;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
+}
+
+.budgets-btn:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.budgets-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #2db2ff;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
+}
+
+.budgets-btn:hover::after {
+    top: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+/* Botão Adicionar Dia */
+.add-day-btn {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    height: 45px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+}
+
+.add-day-btn a {
+    top: auto;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.add-day-btn:hover a {
+    letter-spacing: 3px;
+}
+
+.add-day-btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+
+.add-day-btn:hover a::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+.add-day-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #1eff45;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #1eff45, 0 0 15px #1eff45, 0 0 30px #1eff45, 0 0 60px #1eff45;
+}
+
+.add-day-btn:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.add-day-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #1eff45;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #1eff45, 0 0 15px #1eff45, 0 0 30px #1eff45, 0 0 60px #1eff45;
+}
+
+.add-day-btn:hover::after {
+    top: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+/* Botão Salvar Orçamento */
+.save-budget-btn {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    height: 45px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+}
+
+.save-budget-btn a {
+    top: auto;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.save-budget-btn:hover a {
+    letter-spacing: 3px;
+}
+
+.save-budget-btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+
+.save-budget-btn:hover a::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+.save-budget-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #1eff45;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #1eff45, 0 0 15px #1eff45, 0 0 30px #1eff45, 0 0 60px #1eff45;
+}
+
+.save-budget-btn:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.save-budget-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #1eff45;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #1eff45, 0 0 15px #1eff45, 0 0 30px #1eff45, 0 0 60px #1eff45;
+}
+
+.save-budget-btn:hover::after {
+    top: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+/* Botão Gerar PDF */
+.generate-pdf-btn {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    height: 45px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 150px;
+}
+
+.generate-pdf-btn a {
+    top: auto;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.generate-pdf-btn:hover a {
+    letter-spacing: 3px;
+}
+
+.generate-pdf-btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+
+.generate-pdf-btn:hover a::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+.generate-pdf-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #ff1f71;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71, 0 0 60px #ff1f71;
+}
+
+.generate-pdf-btn:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.generate-pdf-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #ff1f71;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71, 0 0 60px #ff1f71;
+}
+
+.generate-pdf-btn:hover::after {
+    top: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+/* CSS for Button 62 - Customized for smaller size and red color */
+.button-62 {
+    background: linear-gradient(to bottom right, #D32F2F, #FF5252);
+    border: 0;
+    border-radius: 8px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 2;
+    outline: transparent;
+    padding: 0 0.8rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+
+.button-62:not([disabled]):focus {
+    box-shadow: 0 0 .2rem rgba(0, 0, 0, 0.5), -.08rem -.08rem 0.8rem rgba(211, 47, 47, 0.5), .08rem .08rem 0.8rem rgba(255, 82, 82, 0.5);
+}
+
+.button-62:not([disabled]):hover {
+    box-shadow: 0 0 .2rem rgba(0, 0, 0, 0.5), -.08rem -.08rem 0.8rem rgba(211, 47, 47, 0.5), .08rem .08rem 0.8rem rgba(255, 82, 82, 0.5);
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .action-btn {
+        margin-left: 0;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+
+    .action-btn:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.btn.home-btn button, .btn.budgets-btn button {
+    min-width: 150px;
+    height: 20px;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    font-size: 1rem;
+}
+
+.btn.home-btn button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(45, 178, 255, 0.15) !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 30px;
+    padding: 0.9rem 2.2rem;
+    min-width: 150px;
+    min-height: 48px;
+    font-size: 1.08rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+}
+.btn.home-btn:hover button {
+    letter-spacing: 3px;
+}
+
+.btn.generate-pdf-btn button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: none;
+    min-width: 150px;
+    min-height: 40px;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+.btn.generate-pdf-btn:hover button {
+    letter-spacing: 3px;
+}
+
+.btn.generate-pdf-btn button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+.btn.generate-pdf-btn:hover button::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+.btn.generate-pdf-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #ff1f71;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71, 0 0 60px #ff1f71;
+}
+.btn.generate-pdf-btn:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.btn.generate-pdf-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #ff1f71;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5;
+    box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71, 0 0 60px #ff1f71;
+}
+.btn.generate-pdf-btn:hover::after {
+    top: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.action-buttons-table {
+    display: flex !important;
+    gap: 0.6rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.action-buttons-table .btn {
+    margin: 0 !important;
+    width: auto !important;
+    display: flex !important;
+}
+
+.btn.home-btn::before,
+.btn.home-btn::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.btn.home-btn button {
+    min-width: 220px;
+    height: 36px;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    font-size: 1.08rem;
+}
+
+/* Botão Google Login - mais espaçamento e glass suave */
+.btn-google-login {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.25); /* Mais translúcido */
+    color: #222;
+    border: none;
+    border-radius: 30px;
+    padding: 0.7rem 2rem;
+    font-size: 1.08rem;
+    font-weight: 600;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+    cursor: pointer;
+    min-width: 200px;
+    min-height: 40px;
+    letter-spacing: 1px;
+    outline: none;
+    gap: 1.3rem; /* Espaço maior entre ícone e texto */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.18);
+}
+.btn-google-login:hover {
+    background: rgba(255,255,255,0.35);
+    box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.22);
+    transform: translateY(-4px) scale(1.04);
+}
+.btn-google-login img {
+    width: 26px;
+    height: 26px;
+    margin-right: 1.1rem;
+}
+
+.btn-google-login::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 130%;
+    height: 170%;
+    z-index: -1; /* Fica atrás do conteúdo */
+    border-radius: 50px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+    filter: blur(16px);
+    background: 
+        radial-gradient(circle at 30% 50%, #4285F4 0%, transparent 60%),
+        radial-gradient(circle at 70% 50%, #EA4335 0%, transparent 60%),
+        radial-gradient(circle at 50% 80%, #FBBC05 0%, transparent 60%),
+        radial-gradient(circle at 50% 20%, #34A853 0%, transparent 60%);
+}
+.btn-google-login:hover::before {
+    opacity: 0.55;
+}
+.btn-google-login button, .btn-google-login img, .btn-google-login span, .btn-google-login {
+    position: relative;
+    z-index: 1;
+}
+
+/* Botão Visualizar Orçamento - azul */
+.btn-view-budget button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(45, 178, 255, 0.15) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(45, 178, 255, 0.2);
+    border-top: 1px solid rgba(45, 178, 255, 0.2);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: none;
+    min-width: 120px;
+    min-height: 40px;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+.btn-view-budget button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(45, 178, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+.btn-view-budget:hover button::before {
+    transform: skewX(45deg) translate(200px);
+}
+.btn-view-budget::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #2db2ff;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
+}
+.btn-view-budget:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+.btn-view-budget::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #2db2ff;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
+}
+.btn-view-budget:hover::after {
+    top: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+/* Botão Excluir Orçamento - vermelho */
+.btn-delete-budget button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 31, 113, 0.15) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 31, 113, 0.2);
+    border-top: 1px solid rgba(255, 31, 113, 0.2);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: none;
+    min-width: 120px;
+    min-height: 40px;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+.btn-delete-budget button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 31, 113, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.5s;
+    filter: blur(0px);
+}
+.btn-delete-budget:hover button::before {
+    transform: skewX(45deg) translate(200px);
+}
+.btn-delete-budget::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #ff1f71;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+    box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71, 0 0 60px #ff1f71;
+}
+.btn-delete-budget:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+.btn-delete-budget::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #ff1f71;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+    box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71, 0 0 60px #ff1f71;
+}
+.btn-delete-budget:hover::after {
+    top: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.material-symbols-outlined {
+  font-size: 1.4em;
+  vertical-align: middle;
+  margin-right: 0.4em;
+  /* Ajuste conforme necessário */
+}
+.home-btn a, .budgets-btn a {
+  font-size: 1.08rem;
+  /* Ajuste global para o texto dos botões de navegação */
+} 

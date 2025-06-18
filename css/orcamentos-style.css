@@ -1548,4 +1548,130 @@ body {
 .pdf-table th:nth-child(11)
 {
     text-align: right;
+}
+
+/* Botão com glow padrão */
+.glow-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.5s;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    min-width: 120px;
+    cursor: pointer;
+}
+.glow-btn::before, .glow-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 10px;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+    z-index: -1;
+}
+.glow-btn::before {
+    bottom: -5px;
+}
+.glow-btn::after {
+    top: -5px;
+}
+.glow-btn.green::before, .glow-btn.green::after {
+    background: #1eff45;
+    box-shadow: 0 0 5px #1eff45, 0 0 15px #1eff45, 0 0 30px #1eff45, 0 0 60px #1eff45;
+}
+.glow-btn.red::before, .glow-btn.red::after {
+    background: #ff1f71;
+    box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71, 0 0 60px #ff1f71;
+}
+.glow-btn.pink::before, .glow-btn.pink::after {
+    background: #ff1f71;
+    box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71, 0 0 60px #ff1f71;
+}
+.glow-btn.green:hover::before, .glow-btn.green:hover::after,
+.glow-btn.red:hover::before, .glow-btn.red:hover::after,
+.glow-btn.pink:hover::before, .glow-btn.pink:hover::after {
+    height: 60%;
+    width: 90%;
+    border-radius: 30px;
+}
+.glow-btn:hover {
+    letter-spacing: 3px;
+}
+
+/* Variação menor do botão glow */
+.glow-btn.small {
+    min-width: 80px;
+    font-size: 0.95rem;
+    padding: 0.4rem 1rem;
+    height: 36px;
+}
+
+/* Container de botões de ação na tabela */
+.action-buttons-table {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.glow-btn.green {
+    background: linear-gradient(90deg, #1eff45 60%, #2db2ff 100%);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 16px 0 rgba(46, 213, 115, 0.15);
+    transition: background 0.3s, box-shadow 0.3s;
+    text-align: center;
+    cursor: pointer;
+}
+.glow-btn.green:hover {
+    background: linear-gradient(90deg, #2db2ff 60%, #1eff45 100%);
+    box-shadow: 0 6px 24px 0 rgba(46, 213, 115, 0.25);
+}
+
+.glow-btn.red {
+    background: linear-gradient(90deg, #DB4437 60%, #ff1f71 100%);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 16px 0 rgba(219, 68, 55, 0.15);
+    transition: background 0.3s, box-shadow 0.3s;
+    text-align: center;
+    cursor: pointer;
+}
+.glow-btn.red:hover {
+    background: linear-gradient(90deg, #ff1f71 60%, #DB4437 100%);
+    box-shadow: 0 6px 24px 0 rgba(219, 68, 55, 0.25);
+}
+
+.material-symbols-outlined {
+  font-size: 1.4em;
+  vertical-align: middle;
+  margin-right: 0.4em;
+}
+.home-btn a, .budgets-btn a {
+  font-size: 1.08rem;
 } 

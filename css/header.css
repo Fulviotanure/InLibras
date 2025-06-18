@@ -50,14 +50,15 @@ nav {
 /* Estilos do novo container de navegação (abaixo do cabeçalho) */
 .navigation-container {
     background-color: rgba(var(--glass-base-rgb), var(--glass-alpha-light));
-    backdrop-filter: blur(35px);
-    -webkit-backdrop-filter: blur(35px);
+    /* Removido o blur */
+    /* backdrop-filter: blur(35px); */
+    /* -webkit-backdrop-filter: blur(35px); */
     border: 2px solid rgba(var(--glass-base-rgb), var(--border-alpha-light));
     box-shadow: 0 0 80px var(--shadow-color);
     padding: 0.8rem 1rem;
     width: 100%;
-    max-width: 1400px; /* Garante alinhamento consistente */
-    margin: 1rem auto; /* Ajusta a margem superior para reduzir espaço e alinhar com a borda do header */
+    max-width: 1400px;
+    margin: 1rem auto;
     position: relative;
     z-index: 2147483647;
     border-radius: 20px;
@@ -89,26 +90,7 @@ nav {
 }
 
 /* Estilo comum para botões */
-.nav-btn, .action-btn {
-    padding: 0.7rem 1.6rem;
-    border: none;
-    border-radius: 30px;
-    background: rgba(var(--glass-base-rgb), 0.05);
-    border-bottom: 1px solid rgba(var(--glass-base-rgb), 0.1);
-    border-top: 1px solid rgba(var(--glass-base-rgb), 0.1);
-    color: var(--text-primary);
-    cursor: pointer;
-    font-size: 1.05rem;
-    font-weight: 400;
-    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    letter-spacing: 1px;
-    overflow: hidden;
-    z-index: 1;
-    white-space: nowrap;
-}
+
 
 /* Estado de hover para todos os botões */
 .nav-btn:hover, .action-btn:hover {
@@ -119,239 +101,14 @@ nav {
 }
 
 /* Ajustes específicos para botões de navegação */
-.nav-btn.active {
-    background: rgba(var(--glass-base-rgb), 0.3);
-    color: #fff;
-    box-shadow: 0 0 10px var(--glow-color-blue), 0 0 20px var(--glow-color-blue);
-    letter-spacing: 3px;
+.material-symbols-outlined {
+    font-size: 1.4em;
+    vertical-align: middle;
+    margin-right: 0.4em;
 }
 
-.nav-btn:hover {
-    box-shadow: 0 0 10px var(--glow-color-blue), 0 0 20px var(--glow-color-blue);
-}
-
-/* Botões de Navegação (Home, Orçamentos) - Cores Específicas */
-.nav-buttons.container .btn:nth-child(1)::before,
-.nav-buttons.container .btn:nth-child(1)::after,
-.nav-buttons.container .btn:nth-child(2)::before,
-.nav-buttons.container .btn:nth-child(2)::after {
-    background: #2db2ff;
-    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff,
-        0 0 60px #2db2ff;
-}
-
-.nav-buttons.container .btn:hover::before,
-.nav-buttons.container .btn:hover::after {
-    height: 60%;
-    width: 90%;
-}
-
-.nav-buttons.container {
-    width: 400px;
-}
-
-/* Botão Home */
-.home-btn {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: fit-content;
-    height: 45px;
-    margin: 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    min-width: 110px;
-}
-
-.home-btn a {
-    top: auto;
-    left: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05) !important;
-    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-    padding: 0.7rem 1.6rem;
-    letter-spacing: 1px;
-    text-decoration: none;
-    overflow: hidden;
-    color: #fff;
-    font-weight: 400;
-    z-index: 1;
-    transition: 0.5s;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-}
-
-.home-btn:hover a {
-    letter-spacing: 3px;
-}
-
-.home-btn a::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
-    transform: skewX(45deg) translate(0);
-    transition: 0.5s;
-    filter: blur(0px);
-}
-
-.home-btn:hover a::before {
-    transform: skewX(45deg) translate(200px);
-}
-
-.home-btn::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
-    bottom: -5px;
-    width: 30px;
-    height: 10px;
-    background: #2db2ff;
-    border-radius: 10px;
-    transition: 0.5s;
-    transition-delay: 0.5;
-    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
-}
-
-.home-btn:hover::before {
-    bottom: 0;
-    border-radius: 30px;
-    height: 60%;
-    width: 90%;
-}
-
-.home-btn::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
-    top: -5px;
-    width: 30px;
-    height: 10px;
-    background: #2db2ff;
-    border-radius: 10px;
-    transition: 0.5s;
-    transition-delay: 0.5;
-    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
-}
-
-.home-btn:hover::after {
-    top: 0;
-    border-radius: 30px;
-    height: 60%;
-    width: 90%;
-}
-
-/* Botão Orçamentos */
-.budgets-btn {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: fit-content;
-    height: 45px;
-    margin: 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    min-width: 110px;
-}
-
-.budgets-btn a {
-    top: auto;
-    left: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05) !important;
-    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-    padding: 0.7rem 1.6rem;
-    letter-spacing: 1px;
-    text-decoration: none;
-    overflow: hidden;
-    color: #fff;
-    font-weight: 400;
-    z-index: 1;
-    transition: 0.5s;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-}
-
-.budgets-btn:hover a {
-    letter-spacing: 3px;
-}
-
-.budgets-btn a::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
-    transform: skewX(45deg) translate(0);
-    transition: 0.5s;
-    filter: blur(0px);
-}
-
-.budgets-btn:hover a::before {
-    transform: skewX(45deg) translate(200px);
-}
-
-.budgets-btn::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
-    bottom: -5px;
-    width: 30px;
-    height: 10px;
-    background: #2db2ff;
-    border-radius: 10px;
-    transition: 0.5s;
-    transition-delay: 0.5;
-    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
-}
-
-.budgets-btn:hover::before {
-    bottom: 0;
-    border-radius: 30px;
-    height: 60%;
-    width: 90%;
-}
-
-.budgets-btn::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
-    top: -5px;
-    width: 30px;
-    height: 10px;
-    background: #2db2ff;
-    border-radius: 10px;
-    transition: 0.5s;
-    transition-delay: 0.5;
-    box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff, 0 0 60px #2db2ff;
-}
-
-.budgets-btn:hover::after {
-    top: 0;
-    border-radius: 30px;
-    height: 60%;
-    width: 90%;
+.home-btn a, .budgets-btn a {
+    font-size: 1.08rem;
 }
 
 /* Media Queries para Responsividade */

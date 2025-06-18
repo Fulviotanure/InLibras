@@ -112,8 +112,18 @@ async function loadBudget() {
         totalGeralElement.textContent = `R$ ${(budget.grossTotal ?? 0).toFixed(2)}`;
         // Desconto (%)
         descontoInput.textContent = `${(budget.discount ?? 0)}%`;
-        // Valor final
-        valorFinalElement.textContent = `R$ ${(budget.finalValue ?? 0).toFixed(2)}`;
+        // Valor com desconto
+        const valorComDesconto = (budget.grossTotal ?? 0) * (1 - (budget.discount ?? 0) / 100);
+        const valorNotaFiscal16 = valorComDesconto * 0.16;
+        const valorFinalComNota = valorComDesconto + valorNotaFiscal16;
+        // Atualizar campos
+        const valorNotaFiscal16Element = document.getElementById('valorNotaFiscal16');
+        if (valorNotaFiscal16Element) {
+            valorNotaFiscal16Element.textContent = formatCurrency(valorNotaFiscal16);
+        }
+        if (valorFinalElement) {
+            valorFinalElement.textContent = formatCurrency(valorFinalComNota);
+        }
 
     } catch (error) {
         console.error('Erro ao carregar orçamento:', error);
@@ -230,7 +240,8 @@ function generatePDF() {
                     <div>
                         <p style="color: black;"><strong>Total Bruto:</strong> <span style="color: black;">${formatCurrency(grossTotal)}</span></p>
                         <p style="color: black;"><strong>Desconto:</strong> <span style="color: black;">${discount}%</span></p>
-                        <p style="color: black;"><strong>VALOR FINAL:</strong> <span style="color: black; font-weight: bold; font-size: 1.2rem;">${formatCurrency(finalValue)}</span></p>
+                        <p style="color: black;"><strong>Nota Fiscal 16%:</strong> <span style="color: black;">${formatCurrency(valorNotaFiscal16)}</span></p>
+                        <p style="color: black;"><strong>VALOR FINAL:</strong> <span style="color: black; font-weight: bold; font-size: 1.2rem;">${formatCurrency(valorFinalComNota)}</span></p>
                     </div>
                 </div>
             </div>
@@ -399,4 +410,4 @@ function generatePDF() {
 }
 
 // Start the application
-init();
+init(); 

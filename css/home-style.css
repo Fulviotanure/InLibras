@@ -55,7 +55,7 @@ main {
 
 /* Estilos gerais para seções principais (calculadora, input, resumo, tabela) */
 .calculator-section {
-    background: rgba(var(--glass-base-rgb), 0.05); /* Fundo glassmorphism mais transparente */
+    background: rgba(var(--glass-base-rgb), var(--glass-alpha-medium)); /* Igual ao visualizar orçamento */
     backdrop-filter: blur(35px);
     -webkit-backdrop-filter: blur(35px);
     border: 2px solid rgba(var(--glass-base-rgb), var(--border-alpha-light));
@@ -69,12 +69,12 @@ main {
 
 /* Estilos de fundo para todas as seções principais */
 .calculator-section, .input-section, .summary-section, table {
-    background: rgba(var(--glass-base-rgb), 0.05); /* Fundo glassmorphism geral mais transparente */
-    backdrop-filter: blur(35px); /* Efeito de desfoque */
+    background: rgba(var(--glass-base-rgb), var(--glass-alpha-medium)); /* Igual ao visualizar orçamento */
+    backdrop-filter: blur(35px);
     -webkit-backdrop-filter: blur(35px);
-    border: 2px solid rgba(var(--glass-base-rgb), var(--border-alpha-light)); /* Borda sutil */
-    box-shadow: 0 0 80px var(--shadow-color); /* Sombra */
-    border-radius: 20px; /* Cantos arredondados */
+    border: 2px solid rgba(var(--glass-base-rgb), var(--border-alpha-light));
+    box-shadow: 0 0 80px var(--shadow-color);
+    border-radius: 20px;
     margin-bottom: 2rem;
     padding: 2.5rem;
     color: var(--text-primary);
@@ -1683,4 +1683,26 @@ footer {
     border: 2px solid rgba(var(--glass-base-rgb), var(--border-alpha-light));
     box-shadow: 0 0 80px var(--shadow-color);
     border-radius: 20px;
+}
+
+.summary-item.total.full-width {
+    grid-column: 1 / -1;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.summary-item.total.full-width span {
+    margin: 0 auto;
+    display: block;
+}
+
+.material-symbols-outlined {
+  font-size: 1.4em;
+  vertical-align: middle;
+  margin-right: 0.4em;
+}
+.home-btn a, .budgets-btn a {
+  font-size: 1.08rem;
 }

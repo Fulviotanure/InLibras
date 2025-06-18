@@ -55,12 +55,14 @@ async function loadBudgets(userId) {
                 <td>${date.toLocaleDateString('pt-BR')}</td>
                 <td>R$ ${budget.finalValue ? budget.finalValue.toFixed(2) : '0.00'}</td>
                 <td>
-                    <button class="action-btn view-btn" onclick="viewBudget('${docSnap.id}')">
-                        Visualizar
-                    </button>
-                    <button class="action-btn delete-btn" onclick="deleteBudget('${docSnap.id}')">
-                        Excluir
-                    </button>
+                    <div class="action-buttons-table">
+                        <div class="btn-view-budget">
+                            <button onclick="viewBudget('${docSnap.id}')">Visualizar</button>
+                        </div>
+                        <div class="btn-delete-budget">
+                            <button onclick="deleteBudget('${docSnap.id}')">Excluir</button>
+                        </div>
+                    </div>
                 </td>
             `;
             budgetsTableBody.appendChild(tr);

@@ -35,64 +35,155 @@ body {
 
 .login-box {
     background: rgba(var(--glass-base-rgb), var(--glass-alpha-medium));
-    backdrop-filter: blur(35px);
-    -webkit-backdrop-filter: blur(35px);
     border: 2px solid rgba(var(--glass-base-rgb), var(--border-alpha-light));
     box-shadow: 0 0 80px var(--shadow-color);
-    padding: 2.5rem;
-    border-radius: 20px;
+    padding: 3.5rem;
+    border-radius: 28px;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
 }
 
-.login-box h1 {
-    color: var(--text-primary);
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    font-family: 'Poppins', sans-serif;
+.login-box h1, .login-box h2, .login-box .restricted-area {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .subtitle {
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
 }
 
 .login-options {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    gap: 2rem;
+}
+
+.home-btn button {
+    font-size: 1.3rem;
+    padding: 1.1rem 2.2rem;
+}
+
+.google-btn img, .home-btn button img {
+    width: 32px;
+    height: 32px;
+}
+
+.logo {
+    width: 480px;
+    margin-bottom: 2rem;
+}
+
+/* Botão Google com glow azul idêntico ao exemplo fornecido */
+.google-navigation-button {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    height: 45px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 150px;
+    z-index: 2;
 }
 
 .google-btn {
+    position: relative;
+    top: auto;
+    left: auto;
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 1rem;
-    padding: 0.8rem 1.5rem;
-    border: 1px solid rgba(var(--glass-base-rgb), var(--border-alpha-light));
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 30px;
-    background: rgba(var(--glass-base-rgb), var(--glass-alpha-light));
+    padding: 0.7rem 1.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    transition: 0.3s;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
+    min-width: 180px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    color: var(--text-primary);
-    width: 100%;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border: none;
 }
 
-.google-btn:hover {
-    background: rgba(var(--glass-base-rgb), var(--glass-alpha-medium));
-    box-shadow: 0 0 10px var(--glow-color-blue), 0 0 20px var(--glow-color-blue); /* Assuming --glow-color-blue is defined in header.css or globally */
-    transform: translateY(-2px);
+.google-navigation-button:hover .google-btn {
+    letter-spacing: 3px;
 }
 
-.google-btn img {
-    width: 24px;
-    height: 24px;
+.google-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(45deg) translate(0);
+    transition: 0.3s;
+    filter: blur(0px);
+    z-index: 0;
+}
+
+.google-navigation-button:hover .google-btn::before {
+    transform: skewX(45deg) translate(200px);
+}
+
+.google-navigation-button::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    background: #007bff;
+    border-radius: 10px;
+    transition: 0.3s;
+    transition-delay: 0.1s;
+    box-shadow: 0 0 5px #007bff, 0 0 15px #007bff, 0 0 30px #007bff, 0 0 60px #007bff;
+    z-index: 0;
+}
+
+.google-navigation-button:hover::before {
+    bottom: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
+}
+
+.google-navigation-button::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #007bff;
+    border-radius: 10px;
+    transition: 0.3s;
+    transition-delay: 0.1s;
+    box-shadow: 0 0 5px #007bff, 0 0 15px #007bff, 0 0 30px #007bff, 0 0 60px #007bff;
+    z-index: 0;
+}
+
+.google-navigation-button:hover::after {
+    top: 0;
+    border-radius: 30px;
+    height: 60%;
+    width: 90%;
 }
 
 footer {
@@ -110,24 +201,14 @@ footer {
     margin-bottom: 2rem;
 }
 
-.logo {
-    width: 400px;
-    height: auto;
-    margin-bottom: 1.5rem;
-}
-
 .restricted-area {
-    color: var(--text-primary);
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-align: center;
-    margin: 0;
-    padding: 0.5rem 1rem;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    font-size: clamp(0.7rem, 1.5vw, 1.1rem) !important;
+    font-weight: 700 !important;
+    padding: 0.18rem 0.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    letter-spacing: 0.08em !important;
+    text-transform: none !important;
 }
 
 /* Media Queries for Responsiveness */
@@ -167,8 +248,8 @@ footer {
     }
 
     .restricted-area {
-        font-size: 1rem;
-        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+        padding: 0.3rem 0.6rem;
     }
 
     .login-options {
@@ -203,4 +284,19 @@ footer {
         font-size: 0.9rem;
         padding: 0.3rem 0.6rem;
     }
+}
+
+@media (max-width: 600px) {
+    .restricted-area {
+        font-size: clamp(0.6rem, 2vw, 0.95rem) !important;
+        padding: 0.12rem 0.3rem;
+    }
+}
+
+/* Se houver campos de input, aumente o tamanho deles também */
+.login-box input[type="text"], .login-box input[type="password"] {
+    font-size: 1.3rem;
+    padding: 1.1rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
 } 
